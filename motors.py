@@ -15,9 +15,9 @@ Motor3A = 37
 Motor3B = 35
 Motor3E = 33
  
-Motor4A = 36
-Motor4B = 38
-Motor4E = 40
+Motor4A = 29
+Motor4B = 31
+Motor4E = 32
 
 GPIO.setup(Motor1A,GPIO.OUT)
 GPIO.setup(Motor1B,GPIO.OUT)
