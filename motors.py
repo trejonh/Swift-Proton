@@ -18,6 +18,14 @@ GPIO.setup(Motor1E,GPIO.OUT)
 GPIO.setup(Motor2A,GPIO.OUT)
 GPIO.setup(Motor2B,GPIO.OUT)
 GPIO.setup(Motor2E,GPIO.OUT)
+
+GPIO.output(Motor1A,GPIO.LOW)
+GPIO.output(Motor1B,GPIO.LOW)
+GPIO.output(Motor1E,GPIO.LOW)
+ 
+GPIO.output(Motor2A,GPIO.LOW)
+GPIO.output(Motor2B,GPIO.LOW)
+GPIO.output(Motor2E,GPIO.LOW)
  
 print "Going forwards, clockwise"
 GPIO.output(Motor1A,GPIO.HIGH)
@@ -32,10 +40,11 @@ sleep(10)
 
 GPIO.output(Motor1E,GPIO.LOW)
 GPIO.output(Motor2E,GPIO.LOW)
+sleep(2)
  
 print "Going backwards, counter"
-GPIO.output(Motor1B,GPIO.HIGH)
-GPIO.output(Motor1A,GPIO.LOW)
+GPIO.output(Motor1B,GPIO.LOW)
+GPIO.output(Motor1A,GPIO.HIGH)
 GPIO.output(Motor1E,GPIO.HIGH)
  
 GPIO.output(Motor2A,GPIO.LOW)
