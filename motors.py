@@ -28,7 +28,7 @@ GPIO.output(Motor2A,GPIO.HIGH)
 GPIO.output(Motor2B,GPIO.LOW)
 GPIO.output(Motor2E,GPIO.HIGH)
  
-sleep(2)
+sleep(10)
 
 GPIO.output(Motor1E,GPIO.LOW)
  
@@ -41,7 +41,7 @@ GPIO.output(Motor2A,GPIO.LOW)
 GPIO.output(Motor2B,GPIO.HIGH)
 GPIO.output(Motor2E,GPIO.HIGH)
  
-sleep(2)
+sleep(10)
  
 print "Now stop"
 GPIO.output(Motor1E,GPIO.LOW)
