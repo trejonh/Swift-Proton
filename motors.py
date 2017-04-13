@@ -54,7 +54,7 @@ GPIO.output(Motor4B,GPIO.LOW)
 GPIO.output(Motor4E,GPIO.HIGH)
  
 sleep(10)
-
+print "wait"
 GPIO.output(Motor1E,GPIO.LOW)
 GPIO.output(Motor2E,GPIO.LOW)
 GPIO.output(Motor3E,GPIO.LOW)
