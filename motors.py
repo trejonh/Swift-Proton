@@ -31,6 +31,7 @@ GPIO.output(Motor2E,GPIO.HIGH)
 sleep(10)
 
 GPIO.output(Motor1E,GPIO.LOW)
+GPIO.output(Motor2E,GPIO.LOW)
  
 print "Going backwards, counter"
 GPIO.output(Motor1B,GPIO.HIGH)
