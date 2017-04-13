@@ -62,8 +62,8 @@ GPIO.output(Motor4E,GPIO.LOW)
 sleep(2)
  
 print "Going backwards, counter"
-GPIO.output(Motor1B,GPIO.LOW)
-GPIO.output(Motor1A,GPIO.HIGH)
+GPIO.output(Motor1A,GPIO.LOW)
+GPIO.output(Motor1B,GPIO.HIGH)
 GPIO.output(Motor1E,GPIO.HIGH)
  
 GPIO.output(Motor2A,GPIO.LOW)
