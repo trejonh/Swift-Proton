@@ -1,15 +1,11 @@
+# Echo client program
 import socket
- 
- 
-TCP_IP = '192.168.0.1'
-TCP_PORT = 62
-BUFFER_SIZE = 1024
-MESSAGE = "Hello, World!"
- 
+
+HOST = '192.168.0.1'    # The remote host
+PORT = 9000              # The same port as used by the server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((TCP_IP, TCP_PORT))
-s.send(MESSAGE)
-data = s.recv(BUFFER_SIZE)
+s.connect((HOST, PORT))
+s.sendall('Hello, world')
+data = s.recv(1024)
 s.close()
- 
-print "received data:", data
+print 'Received', repr(data)
