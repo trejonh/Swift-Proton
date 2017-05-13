@@ -1,41 +1,27 @@
-# file: rfcomm-server.py
-# auth: Albert Huang <albert@csail.mit.edu>
-# desc: simple demonstration of a server application that uses RFCOMM sockets
-#
-# $Id: rfcomm-server.py 518 2007-08-10 07:20:07Z albert $
+import sys
+import bluetooth
 
-from bluetooth import *
-
-server_sock=BluetoothSocket( RFCOMM )
-server_sock.bind(("",PORT_ANY))
+server_sock=bluetooth.BluetoothSocket( bluetooth.L2CAP )
+server_sock.bind(("",0x1001))
 server_sock.listen(1)
+while True:
+    print("waiting for incoming connection")
+    client_sock,address = server_sock.accept()
+    print("Accepted connection from %s" % str(address))
 
-port = server_sock.getsockname()[1]
-
-uuid = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
-
-advertise_service( server_sock, "SampleServer",
-                   service_id = uuid,
-                   service_classes = [ uuid, SERIAL_PORT_CLASS ],
-                   profiles = [ SERIAL_PORT_PROFILE ], 
-#                   protocols = [ OBEX_UUID ] 
-                    )
-                   
-print("Waiting for connection on RFCOMM channel %d" % port)
-
-client_sock, client_info = server_sock.accept()
-print("Accepted connection from ", client_info)
-
-try:
+    print("waiting for data")
+    total = 0
     while True:
-        data = client_sock.recv(1024)
+        try:
+            data = client_sock.recv(1024)
+        except bluetooth.BluetoothError as e:
+            break
         if len(data) == 0: break
-        print("received [%s]" % data)
-except IOError:
-    pass
+        total += len(data)
+        print("total byte read: %d" % total)
 
-print("disconnected")
+    client_sock.close()
 
-client_sock.close()
+    print("connection closed")
+
 server_sock.close()
-print("all done")
