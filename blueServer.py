@@ -1,32 +1,27 @@
-# file: l2capclient.py
-# desc: Demo L2CAP server for pybluez.
-# $Id: l2capserver.py 524 2007-08-15 04:04:52Z albert $
-
+import sys
 import bluetooth
 
 server_sock=bluetooth.BluetoothSocket( bluetooth.L2CAP )
-
-port = 0x1001
-
-server_sock.bind(("",port))
+server_sock.bind(("",0x1001))
 server_sock.listen(1)
+while True:
+    print("waiting for incoming connection")
+    client_sock,address = server_sock.accept()
+    print("Accepted connection from %s" % str(address))
 
-#uuid = "94f39d29-7d6d-437d-973b-fba39e49d4ef"
-#bluetooth.advertise_service( server_sock, "SampleServerL2CAP",
-#                   service_id = uuid,
-#                   service_classes = [ uuid ]
-#                    )
-                   
-client_sock,address = server_sock.accept()
-print("Accepted connection from ",address)
+    print("waiting for data")
+    total = 0
+    while True:
+        try:
+            data = client_sock.recv(1024)
+        except bluetooth.BluetoothError as e:
+            break
+        if len(data) == 0: break
+        total += len(data)
+        print("total byte read: %d" % total)
 
-data = client_sock.recv(1024)
-print("Data received: ", str(data))
+    client_sock.close()
 
-while data:
-    client_sock.send('Echo => ' + str(data))
-    data = client_sock.recv(1024)
-    print("Data received:", str(data))
+    print("connection closed")
 
-client_sock.close()
 server_sock.close()
