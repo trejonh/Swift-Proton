@@ -1,15 +1,18 @@
-#!/usr/bin/python           # This is server.py file
-
-import socket               # Import socket module
-
-s = socket.socket()         # Create a socket object
-host = socket.gethostname() # Get local machine name
-port = 12345                # Reserve a port for your service.
-s.bind((host, port))        # Bind to the port
-
-s.listen(5)                 # Now wait for client connection.
-while True:
-   c, addr = s.accept()     # Establish connection with client.
-   print 'Got connection from', addr
-   c.send('Thank you for connecting')
-   c.close()                # Close the connection
+import socket
+ 
+TCP_IP = '127.0.0.1'
+TCP_PORT = 62
+BUFFER_SIZE = 20  # Normally 1024, but we want fast response
+ 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((TCP_IP, TCP_PORT))
+s.listen(1)
+ 
+conn, addr = s.accept()
+print 'Connection address:', addr
+while 1:
+     data = conn.recv(BUFFER_SIZE)
+     if not data: break
+     print "received data:", data
+     conn.send(data)  # echo
+conn.close()

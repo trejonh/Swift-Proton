@@ -1,11 +1,15 @@
-#!/usr/bin/python           # This is client.py file
-
-import socket               # Import socket module
-
-s = socket.socket()         # Create a socket object
-host = '192.168.0.18' # Get local machine name
-port = 12345                # Reserve a port for your service.
-
-s.connect((host, port))
-print s.recv(1024)
-s.close  
+import socket
+ 
+ 
+TCP_IP = '192.168.0.1'
+TCP_PORT = 62
+BUFFER_SIZE = 1024
+MESSAGE = "Hello, World!"
+ 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((TCP_IP, TCP_PORT))
+s.send(MESSAGE)
+data = s.recv(BUFFER_SIZE)
+s.close()
+ 
+print "received data:", data
