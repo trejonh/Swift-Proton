@@ -13,8 +13,8 @@ s.bind((HOST, PORT))
 s.listen(1)
 conn, addr = s.accept()
 while True:
-    ret,frame = cap.read()
-    data = pickle.dumps(frame)
+	ret,frame = cap.read()
+	data = pickle.dumps(frame)
 	print lens(data)
 	try:
 		s.sendall(struct.pack("L", len(data)) + data)
