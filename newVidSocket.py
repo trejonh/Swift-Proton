@@ -21,9 +21,10 @@ def controllerSocket():
 	s.close()
 	sys.exit()
 
-try:
-	thread =Thread(target=videoShell,args=1234)
-	thread.start()
-	controllerSocket
-except:
-	print "unable to start threads"
+if __name__ == "__main__":
+	try:
+		thread =Thread(target=videoShell,args=1234)
+		thread.start()
+		controllerSocket
+	except:
+		print "unable to start threads"
