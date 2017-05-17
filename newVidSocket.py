@@ -16,15 +16,14 @@ def controllerSocket():
 	s.listen(1)
 	conn, addr = s.accept()
 	while True:
-		data = s.recv(12)
+		data = s.recv(1024)
 		print data
 	s.close()
 	sys.exit()
 
-if __name__ == "__main__":
-	try:
-		thread =Thread(target=videoShell,args=1234)
-		thread.start()
-		controllerSocket
-	except:
+try:
+	thread =Thread(target=videoShell,args=1234)
+	thread.start()
+	controllerSocket
+except:
 	print "unable to start threads"
