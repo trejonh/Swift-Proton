@@ -17,14 +17,15 @@ def controllerSocket():
 	s.listen(1)
 	conn, addr = s.accept()
 	while True:
-		data = s.recv(12)
+		data = conn.recv(12)
 		print data
 	s.close()
 	sys.exit()
 
 if __name__ == "__main__":
 	#try:
-	threading.Thread(target=videoShell)
+	t = threading.Thread(target=videoShell)
+	t.start()
 	controllerSocket()
 	time.sleep(0.1)
 	#except:
