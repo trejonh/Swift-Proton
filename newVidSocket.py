@@ -1,7 +1,8 @@
 import socket
-import thread
+import threading
 import os
 import sys
+import time
 
 def videoShell():
 	print "launching shell"
@@ -22,8 +23,9 @@ def controllerSocket():
 	sys.exit()
 
 if __name__ == "__main__":
-	try:
-		thread.start_new_thread(videoShell,())
-		controllerSocket
-	except:
-		print "unable to start threads"
+	#try:
+	threading.Thread(target=videoShell)
+	controllerSocket()
+	time.sleep(0.1)
+	#except:
+	#	print "unable to start threads"
