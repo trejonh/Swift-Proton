@@ -1,5 +1,5 @@
 import socket
-import thread
+from threading import Thread
 import os
 import sys
 
@@ -23,7 +23,8 @@ def controllerSocket():
 
 if __name__ == "__main__":
 	try:
-	 thread.start_new_thread(videoShell,1234)
+		thread =Thread(target=videoShell,args=1234)
+		thread.start()
+		controllerSocket
 	except:
-		print "unable to start threads"
-	controllerSocket()
+	print "unable to start threads"
