@@ -3,7 +3,7 @@ import thread
 import os
 import sys
 
-def videoShell(vars):
+def videoShell():
 	print "launching shell"
 	os.system("./video.sh")
 	
@@ -23,7 +23,7 @@ def controllerSocket():
 
 if __name__ == "__main__":
 	try:
-		thread.start_new_thread(videoShell,1234)
+		thread.start_new_thread(videoShell,())
 		controllerSocket
 	except:
 		print "unable to start threads"
