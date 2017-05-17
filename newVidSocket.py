@@ -4,6 +4,7 @@ import os
 import sys
 
 def videoShell(vars):
+	print "launching shell"
 	os.system("./video.sh")
 	
 def controllerSocket():
@@ -14,7 +15,7 @@ def controllerSocket():
 	s.bind((HOST, CONTROLLER_PORT))
 	s.listen(1)
 	conn, addr = s.accept()
-	while 1:
+	while True:
 		data = s.recv(12)
 		print data
 	s.close()
