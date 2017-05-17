@@ -1,21 +1,28 @@
 import socket
-import time
-import picamera
+import thread
+import os
+import sys
 
-with picamera.PiCamera() as camera:
-    camera.resolution = (640, 480)
-    camera.framerate = 24
+def videoShell(vars):
+	os.system("./video.sh")
+	
+def controllerSocket():
+	HOST = ''                 # Symbolic name meaning all available interfaces
+	PORT = 9000              # Arbitrary non-privileged port
+	CONTROLLER_PORT = 8000
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.bind((HOST, CONTROLLER_PORT))
+	s.listen(1)
+	conn, addr = s.accept()
+	while 1:
+		data = s.recv(12)
+		print data
+	s.close()
+	sys.exit()
 
-    server_socket = socket.socket()
-    server_socket.bind(('0.0.0.0', 9000))
-    server_socket.listen(0)
-
-    # Accept a single connection and make a file-like object out of it
-    connection = server_socket.accept()[0].makefile('wb')
-    try:
-        camera.start_recording(connection, format='h264')
-        camera.wait_recording(60)
-        camera.stop_recording()
-    finally:
-        connection.close()
-        server_socket.close()
+if __name__ == "__main__":
+	try:
+	 thread.start_new_thread(videoShell,1234)
+	except:
+		print "unable to start threads"
+	controllerSocket()
