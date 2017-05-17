@@ -1,5 +1,5 @@
 import socket
-from threading import Thread
+import thread
 import os
 import sys
 
@@ -16,15 +16,14 @@ def controllerSocket():
 	s.listen(1)
 	conn, addr = s.accept()
 	while True:
-		data = s.recv(1024)
+		data = s.recv(12)
 		print data
 	s.close()
 	sys.exit()
 
 if __name__ == "__main__":
 	try:
-		thread =Thread(target=videoShell,args=1234)
-		thread.start()
+		thread.start_new_thread(videoShell,1234)
 		controllerSocket
 	except:
 		print "unable to start threads"
