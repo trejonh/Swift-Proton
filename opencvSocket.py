@@ -28,8 +28,8 @@ def videoShell():
 		frame = imutils.resize(frame, width=400)
 
 		# draw the timestamp on the frame
-		timestamp = datetime.datetime.now()
-		ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
+		#timestamp = datetime.datetime.now()
+		#ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
 		#cv2.putText(frame, ts, (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX,
 		#	0.35, (0, 0, 255), 1)
 
@@ -39,8 +39,11 @@ def videoShell():
 		result, imgencode = cv2.imencode('.jpg', frame, encode_param)
 		data = numpy.array(imgencode)
 		stringData = data.tostring()
+		print data
+		print "length of data"
+		print len(data)
 
-		s.send( str(len(stringData)).ljust(16));
+		#s.send( str(len(stringData)).ljust(16));
 		s.send( stringData )
 
 	# do a bit of cleanup
