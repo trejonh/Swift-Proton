@@ -24,6 +24,7 @@ def videoShell():
 	s.bind((HOST, PORT))
 	s.listen(1)
 	conn, addr = s.accept()
+	print "video streaming"
 	while running:
 		# grab the frame from the threaded video stream and resize it
 		# to have a maximum width of 400 pixels
@@ -40,7 +41,7 @@ def videoShell():
 		#cv2.imshow("Frame", frame)
 		encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
         result, imgencode = cv2.imencode('.jpg', frame, encode_param)  
-        data = np.array(imgencode)  
+        data = numpy.array(imgencode)  
         stringData = data.tostring()  
         s.send( str(len(stringData)).ljust(16));  
         s.send( stringData );  
