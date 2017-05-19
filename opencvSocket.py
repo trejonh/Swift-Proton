@@ -9,6 +9,7 @@ import argparse
 import imutils
 import time
 import cv2
+import numpy
 
 def videoShell():
 	# initialize the video stream and allow the cammera sensor to warmup
