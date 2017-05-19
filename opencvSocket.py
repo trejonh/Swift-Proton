@@ -28,7 +28,7 @@ def videoShell():
 		# grab the frame from the threaded video stream and resize it
 		# to have a maximum width of 400 pixels
 		frame = vs.read()
-		frame = imutils.resize(frame, width=400)
+		frame = imutils.resize(frame, width=320)
 
 		# draw the timestamp on the frame
 		#timestamp = datetime.datetime.now()
@@ -39,12 +39,11 @@ def videoShell():
 		# show the frame
 		#cv2.imshow("Frame", frame)
 		encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
-		result, imgencode = cv2.imencode('.jpg', frame, encode_param)
-		data = numpy.array(imgencode)
-		stringData = data.tostring()
-
-		#s.send( str(len(stringData)).ljust(16));
-		s.send( stringData )
+        result, imgencode = cv2.imencode('.jpg', frame, encode_param)  
+        data = np.array(imgencode)  
+        stringData = data.tostring()  
+        s.send( str(len(stringData)).ljust(16));  
+        s.send( stringData );  
 
 	# do a bit of cleanup
 	cv2.destroyAllWindows()
