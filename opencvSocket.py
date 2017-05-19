@@ -43,8 +43,8 @@ def videoShell():
         result, imgencode = cv2.imencode('.jpg', frame, encode_param)  
         data = numpy.array(imgencode)  
         stringData = data.tostring()  
-        s.send( str(len(stringData)).ljust(16));  
-        s.send( stringData );  
+        conn.send( str(len(stringData)).ljust(16));  
+        conn.send( stringData );  
 
 	# do a bit of cleanup
 	cv2.destroyAllWindows()
