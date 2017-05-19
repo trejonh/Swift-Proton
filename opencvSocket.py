@@ -42,7 +42,7 @@ def videoShell():
 		encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
         result, imgencode = cv2.imencode('.jpg', frame, encode_param)  
         data = numpy.array(imgencode)  
-        stringData = data.tostring()  
+        stringData = data.tostring() + "\r\n"
         #conn.sendall( str(len(stringData)).ljust(16));  
         conn.sendall( stringData );  
 
