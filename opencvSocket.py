@@ -44,7 +44,7 @@ def videoShell():
 		stringData = data.tostring()
 
 		#s.send( str(len(stringData)).ljust(16));
-		s.sendall( stringData )
+		s.send( stringData )
 
 	# do a bit of cleanup
 	cv2.destroyAllWindows()
