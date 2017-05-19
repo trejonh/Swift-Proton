@@ -70,7 +70,6 @@ if __name__ == "__main__":
 	t.start()
 	t1 = threading.Thread(target=controllerSocket)
 	t1.start()
-	controllerSocket()
 	while running:
 		q = raw_input("enter q to quit")
 		if q=="q":
