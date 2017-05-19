@@ -62,7 +62,6 @@ def controllerSocket():
 		data = conn.recv(12)
 		print data
 	s.close()
-	sys.exit()
 
 if __name__ == "__main__":
 	#try:
