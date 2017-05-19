@@ -11,6 +11,8 @@ import time
 import cv2
 import numpy
 
+running = True
+
 def videoShell():
 	# initialize the video stream and allow the cammera sensor to warmup
 	vs = VideoStream(usePiCamera=True).start()
@@ -22,7 +24,7 @@ def videoShell():
 	s.bind((HOST, PORT))
 	s.listen(1)
 	conn, addr = s.accept()
-	while True:
+	while running:
 		# grab the frame from the threaded video stream and resize it
 		# to have a maximum width of 400 pixels
 		frame = vs.read()
@@ -56,7 +58,7 @@ def controllerSocket():
 	s.bind((HOST, CONTROLLER_PORT))
 	s.listen(1)
 	conn, addr = s.accept()
-	while True:
+	while running:
 		data = conn.recv(12)
 		print data
 	s.close()
@@ -66,7 +68,12 @@ if __name__ == "__main__":
 	#try:
 	t = threading.Thread(target=videoShell)
 	t.start()
+	t1 = threading.Thread(target=controllerSocket)
+	t1.start()
 	controllerSocket()
-	time.sleep(0.1)
+	while running:
+		q = raw_input("enter q to quit")
+		if q=="q":
+			running = False
 	#except:
 	#	print "unable to start threads"
