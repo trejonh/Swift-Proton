@@ -10,7 +10,7 @@
 #include <iostream>
 #include <ctime>
 #include <raspicam/raspicam_cv.h>
-
+using namespace std;
 CameraStream::CameraStream(){
 	running = true;
 }
@@ -61,12 +61,12 @@ void CameraStream::startStream(){
 		/************************************/
 	raspicam::RaspiCam_Cv Camera;
 	cv::Mat image;
-	capture.set(CV_CAP_PROP_FRAME_WIDTH,320);   // width pixels
-	capture.set(CV_CAP_PROP_FRAME_HEIGHT,240);   // height pixels
-	capture.set(CV_CAP_PROP_GAIN, 0);            // Enable auto gain etc.
+	Camera.set(CV_CAP_PROP_FRAME_WIDTH,320);   // width pixels
+	Camera.set(CV_CAP_PROP_FRAME_HEIGHT,240);   // height pixels
+	Camera.set(CV_CAP_PROP_GAIN, 0);            // Enable auto gain etc.
 	Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 );
 	if (!Camera.open()) {
-		cerr<<"Error opening the camera"<<endl;return -1;
+		cout<<"Error opening the camera"<<endl;return -1;
 		running = false;
 	}
 	while(running){
