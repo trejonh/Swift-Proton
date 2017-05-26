@@ -1,7 +1,7 @@
 #include "CameraStream.hpp"
 #include <thread>
 #include <pthread.h>
-#include <Python.h>
+#include <python2.7/Python.h>
 #include <stdio.h>
 using namespace std;
 int main(void){
