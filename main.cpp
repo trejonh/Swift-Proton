@@ -10,6 +10,6 @@ int main(void){
 	Py_Initialize();
     FILE *fd = fopen("opencvSocket.py", "r");
 	PyRun_SimpleFileEx(fd, "opencvSocket.py", 1);
-    Py_FinalizeEx();
+    Py_Finalize();
 	return 0;
 }
