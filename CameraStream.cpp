@@ -76,9 +76,10 @@ void CameraStream::startStream(){
 		int imgSize =  image.total()*image.elemSize();
 		//capture->retrieve(frame,0);
 		//Send_All(sockfd,frame.data,imgSize);
-		n = write(sockfd,image.data,imgSize);
+		n = write(newsockfd,image.data,imgSize);
 		if(n<0){
 			cout<<"error writing to socket\n";
+			running = false;
 		}
 	}
 	close(sockfd);
