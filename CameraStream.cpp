@@ -66,7 +66,7 @@ void CameraStream::startStream(){
 	Camera.set(CV_CAP_PROP_GAIN, 0);            // Enable auto gain etc.
 	Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 );
 	if (!Camera.open()) {
-		cout<<"Error opening the camera"<<endl;return -1;
+		cout<<"Error opening the camera"<<endl;
 		running = false;
 	}
 	while(running){
