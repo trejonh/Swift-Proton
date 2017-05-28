@@ -69,14 +69,19 @@ void CameraStream::startStream(){
 		cout<<"Error opening the camera"<<endl;
 		running = false;
 	}
+	cv::vector<unsigned char>buff;
 	while(running){
 		Camera.grab();
 		Camera.retrieve(image);
 		image = (image.reshape(0,1));
+		cv::imencode(".jpg",image,buff);
 		int imgSize =  image.total()*image.elemSize();
 		//capture->retrieve(frame,0);
 		//Send_All(sockfd,frame.data,imgSize);
 		n = write(newsockfd,image.data,imgSize);
+		cout << "bytes sents: "<<n<<endl;
+		cout << "image size :"<< imgSize<<endl;
+		cout << "buffer size: "<< sizeof(buff) <<endl;
 		if(n<0){
 			cout<<"error writing to socket\n";
 			running = false;
