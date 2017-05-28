@@ -61,8 +61,8 @@ void CameraStream::startStream(){
 		/************************************/
 	raspicam::RaspiCam_Cv Camera;
 	cv::Mat image;
-	Camera.set(CV_CAP_PROP_FRAME_WIDTH,320);   // width pixels
-	Camera.set(CV_CAP_PROP_FRAME_HEIGHT,240);   // height pixels
+	Camera.set(CV_CAP_PROP_FRAME_WIDTH,300);   // width pixels
+	Camera.set(CV_CAP_PROP_FRAME_HEIGHT,200);   // height pixels
 	Camera.set(CV_CAP_PROP_GAIN, 0);            // Enable auto gain etc.
 	Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 );
 	if (!Camera.open()) {
