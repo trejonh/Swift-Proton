@@ -1,1 +1,1 @@
-raspivid -t 0 -w 960 -h 540 -fps 25 -hf -o - | ffmpeg -i - -vcodec copy -an -r 25 -f flv -metadata streamName=raspicam tcp://192.168.1.2:6666
+raspivid -t 0 -w 1080 -h 720 -fps 25 -hf -o - | ffmpeg -i - -vcodec copy -an -r 25 -f flv -metadata streamName=raspicam tcp://192.168.2.18:9000
