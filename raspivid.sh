@@ -1,1 +1,1 @@
-raspivid -t 0 -w 1080 -h 720 -fps 25 -hf -o - | ffmpeg -i - -vcodec copy -an -r 25 -f flv -metadata streamName=raspicam tcp://192.168.2.18:9000
+raspivid -n -vf -hf -t 0 -w 960 -h 540 -fps 25 -b 500000 -o - | ffmpeg -i - -vcodec copy -an -metadata title="Streaming from raspberry pi camera" -f flv tcp://localhost:9000
