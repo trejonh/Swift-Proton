@@ -61,8 +61,8 @@ void CameraStream::startStream(){
 		/************************************/
 	raspicam::RaspiCam_Cv Camera;
 	cv::Mat image;
-	Camera.set(CV_CAP_PROP_FRAME_WIDTH,300);   // width pixels
-	Camera.set(CV_CAP_PROP_FRAME_HEIGHT,200);   // height pixels
+	Camera.set(CV_CAP_PROP_FRAME_WIDTH,640);   // width pixels
+	Camera.set(CV_CAP_PROP_FRAME_HEIGHT,480);   // height pixels
 	Camera.set(CV_CAP_PROP_GAIN, 0);            // Enable auto gain etc.
 	Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 );
 	if (!Camera.open()) {
@@ -73,9 +73,9 @@ void CameraStream::startStream(){
 	while(running){
 		Camera.grab();
 		Camera.retrieve(image);
-		image = (image.reshape(0,1));
-		cv::imencode(".jpg",image,buff);
 		int imgSize =  image.total()*image.elemSize();
+		//makes it continous
+		image = (image.reshape(0,1));
 		//capture->retrieve(frame,0);
 		//Send_All(sockfd,frame.data,imgSize);
 		n = write(newsockfd,image.data,imgSize);
