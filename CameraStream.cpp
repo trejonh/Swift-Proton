@@ -86,7 +86,7 @@ void CameraStream::startStream(){
 			cout<<"error writing to socket\n";
 			running = false;
 		}
-		running = false;
+		
 	}
 	close(sockfd);
 	Camera.release();
