@@ -59,7 +59,7 @@ void CameraStream::startStream(){
 				throw boost::system::system_error(error);
 
 			boost::system::error_code ignored_error;
-			socket.send_to(boost::asio::buffer(buff), some boost::asio::ip::udp::endpoint, 0, some boost::system::error_code);			
+			socket.send_to(boost::asio::buffer(buff), remote_endpoint, 0, ignored_error);			
 		}
 		Camera.release();
 	}
