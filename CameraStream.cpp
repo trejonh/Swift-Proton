@@ -43,6 +43,7 @@ void CameraStream::startStream(){
 		while(running){
 			Camera.grab();
 			Camera.retrieve(image);
+			boost::array<char, 1> recv_buf;
 			boost::asio::io_service io_service;
 			udp::socket socket(io_service, udp::endpoint(udp::v4(), 13));
 			vector<uchar> buff;
