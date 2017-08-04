@@ -12,7 +12,7 @@
 #include <raspicam/raspicam_cv.h>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
-
+#include <vector>
 using boost::asio::ip::udp;
 using namespace std;
 CameraStream::CameraStream(){
@@ -45,8 +45,8 @@ void CameraStream::startStream(){
 			Camera.retrieve(image);
 			boost::asio::io_service io_service;
 			udp::socket socket(io_service, udp::endpoint(udp::v4(), 13));
-			boost::vector<uchar> buff;
-			boost::vector<int> params;
+			vector<uchar> buff;
+			vector<int> params;
 			params.push_back(cv::IMWRITE_JPEG_QUALITY);
 			params.push_back(80);
 			cv::imencode(".jpg", image, buff, params);
