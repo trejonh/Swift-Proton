@@ -20,7 +20,7 @@ if __name__ == "__main__":
 	t1 = threading.Thread(target=controllerSocket)
 	t1.start()
 	while running:
-		q = raw_input("enter q to quit")
+		q = raw_input("enter q to quit: ")
 		if q=="q":
 			running = False
 	#except:
