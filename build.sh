@@ -1,1 +1,1 @@
-g++ CameraStream.cpp main.cpp -o CPPStream -L /opt/vc/lib/ -I/usr/local/include -lraspicam -lraspicam_cv -lmmal -lmmal_core -lmmal_util -I/usr/include/boost -lboost_system -lpthread -I/usr/include/python2.7 -lpython2.7 --save-temps -O2 `pkg-config --cflags --libs opencv`  -std=c++11
+g++ CameraStream.cpp main.cpp -o CPPStream -L /opt/vc/lib/ -I/usr/local/include -lraspicam -lraspicam_cv -lmmal -lmmal_core -lmmal_util -L/usr/include/boost -lpthread -I/usr/include/python2.7 -lpython2.7 --save-temps -O2 `pkg-config --cflags --libs opencv`  -std=c++11
